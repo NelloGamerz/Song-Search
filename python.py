@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Firebase initialization
-cred_path = os.getenv('FIREBASE_CREDENTIALS')
+cred_path = os.getenv('FIREBASE_CREDENTIALS_JSON')
 if not cred_path or not os.path.exists(cred_path):
     raise FileNotFoundError("Firebase credentials file not found. Please check the .env file.")
 
