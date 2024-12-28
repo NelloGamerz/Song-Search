@@ -1,7 +1,12 @@
+import os
 from flask import Flask, request, jsonify
 from firebase_admin import credentials, firestore, initialize_app
 from fuzzywuzzy import fuzz
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -9,7 +14,11 @@ app = Flask(__name__)
 CORS(app)
 
 # Firebase initialization
-cred = credentials.Certificate(r"D:\music-5a8cc-firebase-adminsdk-pgurm-997875aacb.json")
+cred_path = os.getenv('FIREBASE_CREDENTIALS')
+if not cred_path or not os.path.exists(cred_path):
+    raise FileNotFoundError("Firebase credentials file not found. Please check the .env file.")
+
+cred = credentials.Certificate(cred_path)
 initialize_app(cred)
 db = firestore.client()
 
@@ -63,5 +72,3 @@ def search_songs():
 
     return jsonify({"results": paginated_results}), 200
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
