@@ -4,3 +4,4 @@ fuzzywuzzy==0.18.0
 flask-cors==5.0.0
 python-dotenv==1.0.0
 gunicorn==23.0.0
+Werkzeug==2.2.3
