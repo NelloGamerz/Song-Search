@@ -79,9 +79,9 @@ def search_songs():
 
     return jsonify({"results": paginated_results}), 200
 
-# Run the Flask app
-if __name__ == "__main__":
-    app.run(debug=True)
+# # Run the Flask app
+# if __name__ == "__main__":
+#     app.run(debug=True)
 
 
 # import os
